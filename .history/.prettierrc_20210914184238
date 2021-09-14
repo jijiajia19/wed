@@ -1,0 +1,22 @@
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "arrowParens": "avoid",
+    "printWidth": 80,
+    "jsxSingleQuote": true,
+    "trailingComma": "none",
+    "endOfLine": "auto",
+    "rangeStart": 0,
+    "overrides": [
+        {
+            "files": "*.html",
+            "options": {
+                "parser": "html"
+            }
+        }
+    ]
+}
