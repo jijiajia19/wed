@@ -1,0 +1,103 @@
+[GitLab的安装及使用教程](https://www.cnblogs.com/ddz-linux/p/10698907.html)
+===================================================================
+
+参考文章： [https://yq.aliyun.com/articles/74395](https://yq.aliyun.com/articles/74395)
+
+GitLab的安装及使用教程
+==============
+
+1、配置yum源
+vim /etc/yum.repos.d/gitlab-ce.repo
+复制以下内容：
+
+\[gitlab-ce\]
+name=Gitlab CE Repository
+baseurl=https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el$releasever/
+gpgcheck=0
+enabled=1
+
+2、更新本地yum缓存
+sudo yum makecache
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220528704-1884341991.png)
+
+3、安装GitLab社区版
+sudo yum install gitlab-ce #自动安装最新版
+sudo yum install gitlab-ce-x.x.x #安装指定版本
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220606159-1111386562.png)
+
+GitLab常用命令
+----------
+
+sudo gitlab-ctl start # 启动所有 gitlab 组件；
+sudo gitlab-ctl stop # 停止所有 gitlab 组件；
+sudo gitlab-ctl restart # 重启所有 gitlab 组件；
+sudo gitlab-ctl status # 查看服务状态；
+sudo gitlab-ctl reconfigure # 启动服务；
+sudo vim /etc/gitlab/gitlab.rb # 修改默认的配置文件；
+gitlab-rake gitlab:check SANITIZE=true --trace # 检查gitlab；
+sudo gitlab-ctl tail # 查看日志；
+
+GitLab使用
+--------
+
+登录GitLab
+1、在浏览器的地址栏中输入ECS服务器的公网IP即可登录GitLab的界面，第一次登录使用的用户名和密码为 root 和 5iveL!fe。
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220724022-1121647855.png)
+
+2、首次登录会强制用户修改密码。密码修改成功后，输入新密码进行登录。
+
+创建Project
+---------
+
+1、安装Git工具linux：安装Git，使用自带的源安装。
+yum install git
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220820434-839383911.png)
+
+2、生成密钥文件：使用ssh-keygen生成密钥文件.ssh/id\_rsa.pub。
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220850542-789932249.png)
+
+3.在GitLab的主页中新建一个Project
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220910339-232655271.png)
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220923040-2040868669.png)
+
+4.添加ssh key导入步骤2中生成的密钥文件内容：
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220933804-1046672545.png)
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220945019-507902101.png)
+
+ssh key添加完成：
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412220953834-1207677886.png)
+
+项目地址，该地址在进行clone操作时需要用到:
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412221002465-1444282711.png)
+
+简单配置
+----
+
+1、配置使用Git仓库的人员姓名（以为例）
+git config --global user.name "xxxx"
+2、配置使用Git仓库的人员email，填写自己的公司邮箱
+git config --global user.email "support@jiagouyun.com"
+3、克隆项目，在本地生成同名目录，并且目录中会有所有的项目文件
+git clone git@iZbp1h7fx16gkr9u4gk8v3Z:root/test.git
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412221019736-1994540587.png)
+
+上传文件
+1、进入到项目目录
+cd test/
+2、创建需要上传到GitLab中的目标文件
+echo “test” > /root/test.sh
+3、将目标文件或者目录拷贝到项目目录下
+cp /root/test.sh ./
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412221041320-1008354312.png)
+
+4、将test.sh文件加入到索引中
+git add test.sh
+5、将test.sh提交到本地仓库
+git commit -m “test.sh”
+6、将文件同步到GitLab服务器上
+git push -u origin master
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412221057344-376613799.png)
+
+7、在网页中查看上传的test.sh文件已经同步到GitLab中
+![](https://img2018.cnblogs.com/blog/1612727/201904/1612727-20190412221108597-1319047004.png)
+
