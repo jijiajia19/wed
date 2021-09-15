@@ -54,9 +54,27 @@
                 maxLevel: 2, //最大的内容表级别。
                 subMaxLevel: 0, //在自定义边栏中添加目录（TOC）。
                 name: 'Wed知识库',
+                share: {
+                    reddit: true,
+                    linkedin: true,
+                    facebook: true,
+                    twitter: true,
+                    whatsapp: true,
+                    telegram: true,
+                },
+                 footer: {
+                    copy: '<span>jijiajia &copy; 2021 - '+ new Date().getFullYear() +'</span>',
+                    auth: 'by <a href="https://github.com/jijiajia19">jijiajia</a>',
+                    pre: '<hr/>',
+                    style: 'text-align: right;',
+                  },options: {
+                        theme: 'slide-bar',
+                        color: '#F44336'
+                  }
             };
         </script>
         <!-- Docsify v4 -->
         <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+        <script src="//unpkg.com/docsify-share/build/index.min.js"></script>
     </body>
 </html>
