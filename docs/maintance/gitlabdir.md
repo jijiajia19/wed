@@ -8,3 +8,4 @@
 - /etc/gitlab/gitlab.rb gitlab配置文件
 - /var/log/gitlab：此目录下存放了 gitlab 各个组件产生的日志
 - /var/opt/gitlab/backups/：备份文件生成的目录
+

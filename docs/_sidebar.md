@@ -19,4 +19,5 @@
 * * * [gitlab数据库配置（新）](/maintance/gitlab_postgresql3)
 * * * [gitlab完全卸载](/maintance/gitlab_uninstall)
 * * * [gitlab完全卸载（ubuntu）](/maintance/gitlab_uninstall_ubuntu)
+* * * [gitlab恢复操作](/maintance/gitlab_restore)
 
