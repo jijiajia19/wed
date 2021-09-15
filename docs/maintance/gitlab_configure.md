@@ -133,6 +133,17 @@ GitLab的邮箱服务是不可或缺的一部分, 它提供了代码提交提醒
 三、GitLab日常配置
 ------------
 
-1.  gitlab配置文件路径： /etc/gitlab/gitlab.rb
+1. gitlab配置文件路径： /etc/gitlab/gitlab.rb
+
 2.  修改地址为外网地址：`external_url 'http://herbguo.gitlabserver.com'`  
     修改后再次执行`sudo gitlab-ctl reconfigure`以便配置修改生效。
+    
+3. GitLab开机自动启动
+
+4. 设置GitLab开机自启动命令为
+
+   sudo systemctl enable gitlab-runsvdir.service
+
+   禁止GitLab开机自启动命令为
+
+   sudo systemctl disable gitlab-runsvdir.service
