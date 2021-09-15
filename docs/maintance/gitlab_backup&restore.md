@@ -1,4 +1,4 @@
-\[Linux\]记一次gitlab代码仓库备份迁移
+\[Linux\]记一次gitlab代码仓库备份迁移]
 ==========================
 
     由于公司的云平台需要进行一次彻底的升级，所以被告知部门的gitlab代码库需要做一次备份迁移。
@@ -7,15 +7,15 @@
     
     整个过程经过两天的时间，从等待临时的虚拟机环境，安装新的gitlab环境，执行gitlab备份，恢复备份，每一步多多少少都有点坑。
 
-[](# "操作系统")操作系统
+操作系统
 ----------------
 
 *   CentOS 7.5
 
-[](# "前提准备")前提准备
+前提准备
 ----------------
 
-gitlab需要依赖一些基础工具，官网上也有说。[](https://about.gitlab.com/install/>官方链接190514</a></p>
+gitlab需要依赖一些基础工具，官网上也有说。https://about.gitlab.com/install/
 <pre><code>sudo yum install -y curl policycoreutils-python openssh-server
 sudo systemctl enable sshd
 sudo systemctl start sshd
@@ -41,7 +41,7 @@ sudo systemctl start postfix
 
 EXTERNAL\_URL="http://IP:PORT" rpm -i gitlab-ee-9.5.2-ee.0.el7.x86\_64.rpm
 
-[](# "新环境gitlab的配置")新环境gitlab的配置
+新环境gitlab的配置
 --------------------------------
 
 rpm安装完后，默认gitlab的配置文件路径为：
@@ -102,7 +102,7 @@ rpm安装完后，默认gitlab的配置文件路径为：
 
 修改完配置文件执行`gitlab-ctl reconfigure`来重启服务使配置生效，刚开始没有该配置，导致恢复备份两次都失败，原因就是默认路径下的空间不足，囧
 
-[](# "备份旧的gitlab")备份旧的gitlab
+备份旧的gitlab
 ----------------------------
 
 执行命令进行备份，将会生成一个命名格式为`<timestamp>_<date>_<gitlab-version>_gitlab_backup.tar`
@@ -117,12 +117,12 @@ time=$(date "+%Y%m%d%H%M%S")
 path="/var/opt/gitlab/backups/"
 gitlab-rake gitlab:backup:create > ${path}${time}\_gitlab\_backup.log
 
-[](# "复制备份文件到新机子")复制备份文件到新机子
+复制备份文件到新机子
 ----------------------------
 
 可以使用scp命令传到新机子的gitlab备份目录中，因为gitlab的备份恢复命令会从备份目录查找对应的备份文件
 
-[](# "在新机子执行备份恢复")在新机子执行备份恢复
+在新机子执行备份恢复
 ----------------------------
 
 先停止相关服务，这一步貌似如果gitlab没人正在使用的话，貌似是可以不关闭的，测试了也不会出错，但是稳妥还是关闭一下
