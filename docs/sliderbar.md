@@ -1,0 +1,12 @@
+- [首页](/coverpage)
+- [运维](/center)
+  - [gitlab安装](/subdocs/home)
+  - [使用 amWiki](/subdocs/home2)
+  - [linux系统用户和普通用户](/subdocs/linux_user)
+  - [xshell日志配置](/subdocs/xshell_log)
+  - [linux管理用户](/subdocs/appuser)
+  - [gitlab](/maintance/gitlab/)
+
+
+- **Links**
+- [Github](https://github.com/jijiajia19)

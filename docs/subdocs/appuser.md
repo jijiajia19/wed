@@ -40,7 +40,7 @@ linux中每一个用户都有一个用户组，在创建用户时如果不指定
     Not creating home directory `/home/test'
 
 
-我们创建了一个用户`test`，指定所属组为`test`，`--system`表示该用户是系统用户， `--ingroup` 指定所属组 `--no-create-home` 表示不为该用户创建家目录 `--disabled-password` 该用户不用来登录
+  我们创建了一个用户`test`，指定所属组为`test`，`--system`表示该用户是系统用户， `--ingroup` 指定所属组 `--no-create-home` 表示不为该用户创建家目录 `--disabled-password` 该用户不用来登录
 
 #### 2.3 修改用户配置[](#)
 

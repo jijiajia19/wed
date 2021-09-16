@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="知识库" content="Description" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+        <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT" />
+        <!-- <link
+            rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" -->
+        <!-- <link rel="stylesheet" href="//unpkg.com/docsify/themes/buble.css" /> -->
+        <!-- Theme: Defaults -->
+        <!-- <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css"
+        /> -->
+        <!--<link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"
+        />-->
+        <!-- Theme: Simple Dark -->
+        <!-- <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css"
+        /> -->
+        <!-- Theme: Defaults -->
+        <!-- <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css"
+        /> -->
+
+        <!-- docsify-themeable styles-->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css"
+        />
+
+        <style>
+            /* Sidebar
+============================================================================= */
+            :root {
+                --sidebar-background: var(--base-background-color);
+                --sidebar-border-color: ;
+                --sidebar-border-width: 0;
+                --sidebar-padding: 0 25px;
+                --sidebar-transition-duration: var(--duration-fast);
+                --sidebar-width: 17rem;
+
+                /* Name */
+                --sidebar-name-background: ;
+                --sidebar-name-color: ;
+                --sidebar-name-font-family: ;
+                --sidebar-name-font-size: var(--font-size-l);
+                --sidebar-name-font-weight: normal;
+                --sidebar-name-margin: 1.5rem 0 0;
+                --sidebar-name-padding: ;
+                --sidebar-name-text-align: center;
+
+                /* Nav Headings */
+                --sidebar-nav-strong-border-color: var(--sidebar-border-color);
+                --sidebar-nav-strong-border-width: ;
+                --sidebar-nav-strong-color: var(--heading-color);
+                --sidebar-nav-strong-font-size: ;
+                --sidebar-nav-strong-font-weight: var(--strong-font-weight);
+                --sidebar-nav-strong-margin: 1.5em 0 0.5em;
+                --sidebar-nav-strong-padding: 0.25em 0;
+                --sidebar-nav-strong-text-transform: ;
+
+                /* Nav Container */
+                --sidebar-nav-background: ;
+                --sidebar-nav-indent: 1em;
+                --sidebar-nav-margin: 1.5rem 0 0;
+                --sidebar-nav-padding: ;
+
+                /* Nav Links */
+                --sidebar-nav-link-background-color: ;
+                --sidebar-nav-link-background-color--active: ;
+                --sidebar-nav-link-background-color--hover: ;
+                --sidebar-nav-link-background-image: ;
+                --sidebar-nav-link-background-image--active: ;
+                --sidebar-nav-link-background-image--hover: ;
+                --sidebar-nav-link-background-position: ;
+                --sidebar-nav-link-background-position--active: ;
+                --sidebar-nav-link-background-position--hover: ;
+                --sidebar-nav-link-background-repeat: ;
+                --sidebar-nav-link-background-size: ;
+                --sidebar-nav-link-background-size--active: ;
+                --sidebar-nav-link-background-size--hover: ;
+                --sidebar-nav-link-border-color: ;
+                --sidebar-nav-link-border-color--active: ;
+                --sidebar-nav-link-border-color--hover: ;
+                --sidebar-nav-link-border-radius: ;
+                --sidebar-nav-link-border-style: solid;
+                --sidebar-nav-link-border-style--active: ;
+                --sidebar-nav-link-border-style--hover: ;
+                --sidebar-nav-link-border-width: 0;
+                --sidebar-nav-link-border-width--active: ;
+                --sidebar-nav-link-border-width--hover: ;
+                --sidebar-nav-link-color: var(--base-color);
+                --sidebar-nav-link-color--active: ;
+                --sidebar-nav-link-color--hover: ;
+                --sidebar-nav-link-font-weight: normal;
+                --sidebar-nav-link-font-weight--active: ;
+                --sidebar-nav-link-font-weight--hover: ;
+                --sidebar-nav-link-margin: ;
+                --sidebar-nav-link-padding: 0.25em 0;
+                --sidebar-nav-link-text-decoration: ;
+                --sidebar-nav-link-text-decoration--active: underline;
+                --sidebar-nav-link-text-decoration--hover: underline;
+                --sidebar-nav-link-text-decoration-color: ;
+                --sidebar-nav-link-transition: ;
+
+                /* Nav Links - Pseudo Content */
+                --sidebar-nav-link-before-content: ;
+                --sidebar-nav-link-before-content--active: ;
+                --sidebar-nav-link-before-content-l1: ;
+                --sidebar-nav-link-before-content-l1--active: ;
+                --sidebar-nav-link-before-content-l2: ;
+                --sidebar-nav-link-before-content-l2--active: ;
+                --sidebar-nav-link-before-content-l3: ;
+                --sidebar-nav-link-before-content-l3--active: ;
+                --sidebar-nav-link-before-content-l4: ;
+                --sidebar-nav-link-before-content-l4--active: ;
+
+                /* Nav Links - Pseudo Style */
+                --sidebar-nav-link-before-color: ;
+                --sidebar-nav-link-before-color--active: ;
+                --sidebar-nav-link-before-color-l1: ;
+                --sidebar-nav-link-before-color-l1--active: ;
+                --sidebar-nav-link-before-color-l2: ;
+                --sidebar-nav-link-before-color-l2--active: ;
+                --sidebar-nav-link-before-color-l3: ;
+                --sidebar-nav-link-before-color-l3--active: ;
+                --sidebar-nav-link-before-color-l4: ;
+                --sidebar-nav-link-before-color-l4--active: ;
+                --sidebar-nav-link-before-margin: 0 0.35em 0 0;
+                --sidebar-nav-link-before-margin-l1: ;
+                --sidebar-nav-link-before-margin-l2: ;
+                --sidebar-nav-link-before-margin-l3: ;
+                --sidebar-nav-link-before-margin-l4: ;
+
+                /* Nav Page Links */
+                --sidebar-nav-pagelink-background-image: ;
+                --sidebar-nav-pagelink-background-image--active: ;
+                --sidebar-nav-pagelink-background-image--collapse: ;
+                --sidebar-nav-pagelink-background-image--loaded: ;
+                --sidebar-nav-pagelink-background-position: ;
+                --sidebar-nav-pagelink-background-position--active: ;
+                --sidebar-nav-pagelink-background-position--collapse: ;
+                --sidebar-nav-pagelink-background-position--loaded: ;
+                --sidebar-nav-pagelink-background-repeat: no-repeat;
+                --sidebar-nav-pagelink-background-size: ;
+                --sidebar-nav-pagelink-padding: ;
+                --sidebar-nav-pagelink-transition: var(
+                    --sidebar-nav-link-transition
+                );
+
+                /* Toggle */
+                --sidebar-toggle-background: ;
+                --sidebar-toggle-border-color: ;
+                --sidebar-toggle-border-radius: var(--border-radius-s);
+                --sidebar-toggle-border-style: solid;
+                --sidebar-toggle-border-width: 0;
+                --sidebar-toggle-height: 36px;
+                --sidebar-toggle-icon-color: var(--base-color);
+                --sidebar-toggle-icon-height: 10px;
+                --sidebar-toggle-icon-stroke-width: 1px;
+                --sidebar-toggle-icon-width: 16px;
+                --sidebar-toggle-offset-left: 0;
+                --sidebar-toggle-offset-top: calc(
+                    35px - (var(--sidebar-toggle-height) / 2)
+                );
+                --sidebar-toggle-width: 44px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script>
+            window.$docsify = {
+                name: "",
+                repo: "",
+                auto2top: true, //当路线改变时，滚动到屏幕的顶部。
+                coverpage: false, //激活封面功能。如果为true，则会从中加载_coverpage.md。
+                executeScript: true, //执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开启。
+                loadSidebar: true, //_sidebar.md如果为真，则从_sidebar.md文件加载边栏，否则从指定的路径加载。
+                loadNavbar: false, //_navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载。
+                mergeNavbar: false, //Navbar将在小屏幕上与侧边栏合并。
+                maxLevel: 2, //最大的内容表级别。
+                subMaxLevel: 0, //在自定义边栏中添加目录（TOC）。
+                name: "Wed知识库",
+                themeable: {
+                    readyTransition: true, // default
+                    responsiveTables: true // default
+                }
+            };
+        </script>
+        <!-- Docsify v4 -->
+        <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+        <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+    </body>
+</html>

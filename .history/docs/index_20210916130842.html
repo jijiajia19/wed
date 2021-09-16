@@ -43,17 +43,13 @@
         />
     </head>
     <body>
-        <!-- <nav>
-            <a href="#/">EN</a>
-            <a href="#/zh-cn/">中文</a>
-        </nav> -->
         <div id="app"></div>
         <script>
             window.$docsify = {
                 name: "",
                 repo: "",
                 auto2top: true, //当路线改变时，滚动到屏幕的顶部。
-                coverpage: false, //激活封面功能。如果为true，则会从中加载_coverpage.md。
+                coverpage: "coverpage.md", //激活封面功能。如果为true，则会从中加载_coverpage.md。
                 executeScript: true, //执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开启。
                 loadSidebar: "sliderbar.md", //_sidebar.md如果为真，则从_sidebar.md文件加载边栏，否则从指定的路径加载。
                 loadNavbar: false, //_navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载。
@@ -62,15 +58,11 @@
                 subMaxLevel: 0, //在自定义边栏中添加目录（TOC）。
                 name: "Jacle的知识库(wed)",
                 auto2top: true,
-                notFoundPage: "404.md",
                 themeable: {}
             };
         </script>
         <!-- Docsify v4 -->
-        <script src="./js/docsify.min.js"></script>
+        <script src="https://unpkg.com/docsify/lib/docsify.min.js"></script>
         <script src="https://unpkg.com/docsify-themeable"></script>
-        <script src="https://unpkg.com/docsify/lib/plugins/search.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
     </body>
 </html>

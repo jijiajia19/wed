@@ -1,4 +1,4 @@
-\[Linux\]记一次gitlab代码仓库备份迁移]
+[Linux]记一次gitlab代码仓库备份迁移]
 ==========================
 
     由于公司的云平台需要进行一次彻底的升级，所以被告知部门的gitlab代码库需要做一次备份迁移。
@@ -39,7 +39,7 @@ sudo systemctl start postfix
 安装命令：
 
 
-EXTERNAL\_URL="http://IP:PORT" rpm -i gitlab-ee-9.5.2-ee.0.el7.x86\_64.rpm
+EXTERNAL_URL="http://IP:PORT" rpm -i gitlab-ee-9.5.2-ee.0.el7.x86_64.rpm
 
 新环境gitlab的配置
 --------------------------------
@@ -59,22 +59,22 @@ rpm安装完后，默认gitlab的配置文件路径为：
 1.  unicorn服务的端口，默认是8080，但是很多机子的8080都可能占用
 
 
-    \# unicorn\['port'\] = 8080
-    unicorn\['port'\] = 8889
+    # unicorn['port'] = 8080
+    unicorn['port'] = 8889
 
 2.  访问限制，默认单IP限制次数为10，这个太小了，由于当前是内网，所以放开这个限制
 
 
-    \# gitlab\_rails\['rack\_attack\_git\_basic\_auth'\] = {
-    \#    'enabled' => true,
-    \#    'ip\_whitelist' => \["127.0.0.1"\] ,
-    \#    'maxretry' => 10,
-    \#    'findtime' => 60,
-    \#    'bantime' => 3600
+    # gitlab_rails['rack_attack_git_basic_auth'] = {
+    #    'enabled' => true,
+    #    'ip_whitelist' => ["127.0.0.1"] ,
+    #    'maxretry' => 10,
+    #    'findtime' => 60,
+    #    'bantime' => 3600
     #}
-    gitlab\_rails\['rack\_attack\_git\_basic\_auth'\] = {
+    gitlab_rails['rack_attack_git_basic_auth'] = {
         'enabled' => true,
-        'ip\_whitelist' => \["127.0.0.1"\] ,
+        'ip_whitelist' => ["127.0.0.1"] ,
         'maxretry' => 10000,
         'findtime' => 60,
         'bantime' => 3600
@@ -82,18 +82,18 @@ rpm安装完后，默认gitlab的配置文件路径为：
 
 3.  备份目录，可自行修改
 
-    \# gitlab\_rails\['backup\_path'\] = "/var/opt/gitlab/backups"
-    gitlab\_rails\['backup\_path'\] = "/gitlab/backup/path"
+    # gitlab_rails['backup_path'] = "/var/opt/gitlab/backups"
+    gitlab_rails['backup_path'] = "/gitlab/backup/path"
 
 4.  仓库路径，可自行修改
 
 
-    #git\_data\_dirs({
-    \#    "default" => {
-    \#        "path" => "/var/opt/gitlab/git-data"
-    \#    }
+    #git_data_dirs({
+    #    "default" => {
+    #        "path" => "/var/opt/gitlab/git-data"
+    #    }
     #})
-    git\_data\_dirs({
+    git_data_dirs({
         "default" => {
             "path" => "/gitlab/repos/data/path"
         }
@@ -111,7 +111,6 @@ rpm安装完后，默认gitlab的配置文件路径为：
     gitlab-rake gitlab:backup:create
 
 由于旧的gitlab有个定时任务，每日凌晨3点会执行一次备份，不然手动执行需要差不多一个小时，定时任务shell脚本
-
 
 time=$(date "+%Y%m%d%H%M%S")
 path="/var/opt/gitlab/backups/"
@@ -134,7 +133,7 @@ gitlab-ctl stop sidekiq
 执行备份恢复命令
 
 
-gitlab-rake gitlab:backup:restore BACKUP=<timestamp>\_<date>\_<gitlab-version>
+gitlab-rake gitlab:backup:restore BACKUP=<timestamp>_<date>_<gitlab-version>
 
 这个过程也是很漫长，现在备份文件20G，执行起来需要足足半个小时来恢复，慢慢等吧
 
