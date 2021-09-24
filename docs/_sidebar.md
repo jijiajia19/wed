@@ -1,6 +1,5 @@
 - [首页](/home)
 - [运维](/center)
-- - [gitlab安装](/subdocs/home)
 - - [使用 amWiki](/subdocs/home2)
 - - [linux系统用户和普通用户](/maintance/linux_user)
 - - [xshell日志配置](/maintance/xshell_log)

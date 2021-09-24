@@ -1,4 +1,18 @@
 #  wed(前进、前进、不择手段地前进)
+# Jacle的知识库
+>  **代号"wed"**
 
-## wed的知识库
+- [**Get Started**](#main)
+- [**GitHub**](https://github.com/jijiajia19)
+
+>  托马斯·维德，[刘慈欣](https://baike.baidu.com/item/%E5%88%98%E6%85%88%E6%AC%A3/142084)作品《**三体III：死神永生**》中的主要人物，原行星防御理事会战略情报局（[PIA](https://baike.baidu.com/item/PIA/13464686)）首任局长。人类社会极端理智代表人物，马基雅维利主义者。曾为成为执剑人刺杀程心未遂，在三体的人格分析中他的威慑度在任何情况下都是100%，且没有[罗辑](https://baike.baidu.com/item/%E7%BD%97%E8%BE%91/8086704)和程心的波动，[三体人](https://baike.baidu.com/item/%E4%B8%89%E4%BD%93%E4%BA%BA/8709210)眼中的魔鬼。认为兽性比人性更重要（“**失去人性，失去很多；失去兽性，失去一切**”）。因对程心的承诺而放弃光速飞船研究并交还星环城，后在太阳系联邦法庭被判处死刑。
+
+
+![死神永生](https://meitianjinbu.oss-accelerate.aliyuncs.com/upload/2019/05/201905131557753481527450.jpg?x-oss-process=style/img1)
+
+![三体](https://meitianjinbu.oss-accelerate.aliyuncs.com/upload/2019/05/201905131557753463551978.jpg?x-oss-process=style/img1)
+
+![水滴](https://meitianjinbu.oss-accelerate.aliyuncs.com/upload/2019/05/201905131557753494558787.jpg?x-oss-process=style/img1)
+
+
 
