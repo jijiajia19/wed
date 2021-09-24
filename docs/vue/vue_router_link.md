@@ -59,7 +59,8 @@ VUE参考---设置router-link激活样式
       linkActiveClass: 'myactive'
     })
 
-  <style\>
+```
+  <style>
     .router-link-active,
     .myactive {
       color: red;
@@ -69,5 +70,6 @@ VUE参考---设置router-link激活样式
       text-decoration: underline;
       background-color: green;
     }
-  </style\>
+  </style>
+```
 

@@ -7,9 +7,9 @@
   - [gitlab](/maintance/gitlab/)
 - [VUE](/vue)
 - - [axios](/vue/axios)
-  - [vscode_debug](/vue/vscode_debug)
+  - [vscode_debug](/vue/vue_debug)
   - [vscode_debug2](/vue/vscode_debug2)
-  - [props使用注意点](/vue/vscode_debug2)
+  - [props使用注意点](/vue/vue_props)
   - [VUE参考---设置router-link激活样式](/vue/vue_router_link)
 - **Links**
 - [Github](https://github.com/jijiajia19)
