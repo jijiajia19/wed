@@ -1,12 +1,18 @@
 - [首页](/coverpage)
 - [运维](/center)
-  - [gitlab安装](/subdocs/home)
   - [使用 amWiki](/subdocs/home2)
   - [linux系统用户和普通用户](/subdocs/linux_user)
   - [xshell日志配置](/subdocs/xshell_log)
   - [linux管理用户](/subdocs/appuser)
+  - [DNS服务器构建](/subdocs/dns_centos)
+  - [DNS主从服务器构建](/subdocs/master_slave_dns)
   - [gitlab](/maintance/gitlab/)
-
-
+- [VUE](/vue)
+- - [axios](/vue/axios)
+  - [vscode_debug](/vue/vue_debug)
+  - [vscode_debug2](/vue/vscode_debug2)
+  - [props使用注意点](/vue/vue_props)
+  - [VUE参考---设置router-link激活样式](/vue/vue_router_link)
 - **Links**
 - [Github](https://github.com/jijiajia19)
+

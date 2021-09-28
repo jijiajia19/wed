@@ -1,6 +1,5 @@
 - [首页](/home)
 - [运维](/center)
-- - [gitlab安装](/subdocs/home)
 - - [使用 amWiki](/subdocs/home2)
 - - [linux系统用户和普通用户](/maintance/linux_user)
 - - [xshell日志配置](/maintance/xshell_log)
@@ -20,4 +19,10 @@
 - - - [gitlab完全卸载](/maintance/gitlab_uninstall)
 - - - [gitlab完全卸载（ubuntu）](/maintance/gitlab_uninstall_ubuntu)
 - - - [gitlab恢复操作](/maintance/gitlab_restore)
+- [VUE](/vue)
+- - [axios](/vue/axios)
+  - [vscode_debug](/vue/vscode_debug)
+  - [vscode_debug2](/vue/vscode_debug2)
+  - [props使用注意点](/vue/vscode_debug2)
+  - [VUE参考---设置router-link激活样式](/vue/vue_router_link)
 
