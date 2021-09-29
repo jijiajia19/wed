@@ -13,6 +13,7 @@
   - [gitlab完全卸载](/maintance/gitlab/gitlab_uninstall)
   - [gitlab完全卸载(ubuntu)](/maintance/gitlab/gitlab_uninstall_ubuntu)
   - [gitlab恢复操作](/maintance/gitlab/gitlab_restore)
+  - [gitlab运行Runner](/maintance/gitlab/gitlab_runner)
 
 
 - **Links**
