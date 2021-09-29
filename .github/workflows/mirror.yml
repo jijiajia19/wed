@@ -14,4 +14,4 @@ jobs:
           target_repo_url:
             git@gitee.com:jacle/github_backup_test.git
           ssh_private_key:
-            ${{ secrets.GITEE_KEY }}
+            ${{ secrets.PRIVATE_KEY_GITEE }}
