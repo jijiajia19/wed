@@ -116,3 +116,24 @@ arp 建立对应关系；保存到本地；
 
   172.16.10.0/17 ,这是一个IP地址，结尾是0和255 不一定是一个网段，也可能是一个地址；
 
+
+
+## 路由配置
+
+> interface xxx/0
+>
+> ip address ip netmask
+>
+> no shutdown 开启端口
+
+> ```cpp
+> router#write //将RAM中的当前配置存储到NVRAM中，下次路由器启动就是执行保存的配置
+> router#Copy running-config startup-config //命令与write效果一样
+> ```
+
+> ```cpp
+> router(config)#int s0 //进入接口配置模式 serial 0 端口配置（如果是模块化的路由器前面加上槽位编号，例如serial0/0 代表这个路由器的0槽位上的第一个接口）
+> router(config-if)#ip address xxx.xxx.xxx.xxx xxx.xxx.xxx.xxx  //添加ip 地址和掩码
+> router(config-if)#no shutdown //开启端口
+> ```
+
