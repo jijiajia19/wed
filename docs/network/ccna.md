@@ -126,14 +126,42 @@ arp 建立对应关系；保存到本地；
 >
 > no shutdown 开启端口
 
-> ```cpp
+
 > router#write //将RAM中的当前配置存储到NVRAM中，下次路由器启动就是执行保存的配置
 > router#Copy running-config startup-config //命令与write效果一样
-> ```
 
-> ```cpp
+
 > router(config)#int s0 //进入接口配置模式 serial 0 端口配置（如果是模块化的路由器前面加上槽位编号，例如serial0/0 代表这个路由器的0槽位上的第一个接口）
 > router(config-if)#ip address xxx.xxx.xxx.xxx xxx.xxx.xxx.xxx  //添加ip 地址和掩码
 > router(config-if)#no shutdown //开启端口
-> ```
 
+## 机器配置
+
+> usermode 只能查看
+>
+> privilege mode(<- enable)-- 可以设置系统时间
+>
+> config mode (<- config term)--完全配置路由系统
+>
+> > interface/line/router submode
+
+> 系统启动的时候会找start-up configuration
+>
+> configuration register 寄存器，有时需要改写；不会立即生效;
+>
+> boot system命令启动哪个系统；
+>
+> ​	boot system flash  xxx.filename
+>
+>    Router(config)#boot system flash c2900-universalk9-mz.SPA.155-3.M4a.bin
+>
+>    Router(config)#do write
+
+> copy tftp flash
+>
+> copy flash tftp
+
+> reload 重启路由命令
+>
+> delete filename 删除文件
+>
