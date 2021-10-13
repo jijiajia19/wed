@@ -232,8 +232,7 @@ arp 建立对应关系；保存到本地；
 > > !
 >
 > banner login
->
-<<<<<<< HEAD
+> banner exec (packet tracer无法模拟此)
 
 > R1#conf t R1(config)#service password-encryption 
 >
@@ -342,6 +341,88 @@ show user 查看用户接入方式
 > 
 
 > 默认telnet无法连接，可以设置line模式下 no login
-=======
-> banner exec (packet tracer无法模拟此)
->>>>>>> f35c35d930580047c0ef0883dc1d53dda8ad8e69
+
+
+
+## 设置特权密码，密码加密
+
+> enable algorithm-type scrypt  secret
+>
+> --此密码无法decrypt
+>
+> enable 专门指特权模式加密
+
+
+
+##  密码恢复
+
+配置文件默认从0x2102加载配置文件到ram,（启动的时候去寻找startup-configuration）
+
+confreg 0x2142 返回一个空白的startup-configuration
+
+处理完之后改回0x2102 confreg 0x2102
+
+
+
+## 忘记密码
+
+> 在ROM Monitor模式下配置寄存器
+> rommon 1 > confreg 0x2142
+> rommon 2 > reset
+> 1.
+> 2.
+> 配置完寄存器后重启，进入特权模式(不用输入密码)输入以下命令：
+>
+> 登录后复制
+> Router#copy startup-config running-config
+> Router(config)# no enable password
+>
+> Router(config)# config-register 0x2102
+> -----------------------------------
+
+## Translating ""...domain server
+
+> 思科模拟器Cisco Packet Tracer 在输错命令后，很长时间没有响应，然后出现
+>
+> Translating ""...domain server (255.255.255.255)
+>
+> % Unknown command or computer name, or unable to find computer address
+>
+> 解决方法是：在config#下输入以下命令即可消除提示
+>
+> **no ip domain-lookup**
+>
+> 如果网络中没有DNS服务器的话，那么在配置router的时候最好写上该句，因为在输入错误的命令的时，它会像查找域名一样，去搜DNS服务器，造成不必要的延时。
+
+## 日志
+
+> 开启console log：Router(config)#logging console
+> 开启buffered log：Router(config)#logging buffered
+> 开启日志到服务器(syslog)：Router(config)#logging 服务器IP地址
+> 开启terminal log(Monitor log)：Router#terminal monitor
+> 日志开启总开关(不开启就算配置也不起作用)：Router(config)#logging on
+>
+> 关闭console日志:no console logging
+>
+> syslog配置:logging 192.168.1.2
+>
+> logging sync 防止命令和日志混合错乱;
+
+> 查看配置的日志：Router#show logging
+> -----------------------------------
+
+
+
+
+
+# 二层交换
+
+> repeater\hub\bridge
+>
+> 路由器分隔广播域，交换机分隔冲突域
+
+
+
+> arp是存在客户端网卡里面
+>
+> 交换机存储的是端口和mac的映射表（类似bridge）
