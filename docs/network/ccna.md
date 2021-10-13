@@ -164,7 +164,76 @@ arp 建立对应关系；保存到本地；
 > reload 重启路由命令
 >
 > delete filename 删除文件
+
+
+
+
+
+## console取消timeout设定
+
+> Switch# config t
 >
+>  Enter configuration commands, one per line. End with CNTL/Z.
+>
+> Switch(config)# line console 0 //設定console介面
+>
+> Switch(config-line)# password 123456 //設定密碼
+>
+> Switch(config-line)# login //套用設定
+>
+> Switch(config-line)# exec-timeout 0 0 //取銷Timeout設定
+>
+> Switch(config-line)# logging synchronous //啟用游標跟隨
+
+
+
+
+
+> 配置密码：可以设置no password取消特权密码
+>
+> 
+>
+> Switch(config)#username jijiajia password larryjacle
+>
+> Switch(config)#line vty 0 4
+>
+> Switch(config-line)#login local
+>
+> login local跟password同时配置，login local优先作用
+
+## send message between switch
+
+同交换机内部可以发消息,多个连接用户可以看到发送的消息;
+
+应用：重启时通知其他连接用户；
+
+
+
+
+
+## banner
+
+> banner motd
+>
+> > Switch#conf t
+> >
+> > Enter configuration commands, one per line.  End with CNTL/Z.
+> >
+> > Switch(config)#banner motd
+> >
+> > % Incomplete command.
+> >
+> > Switch(config)#banner motd !
+> >
+> > Enter TEXT message.  End with the character '!'.
+> >
+> > hello login
+> >
+> > !
+>
+> banner login
+>
+<<<<<<< HEAD
 
 > R1#conf t R1(config)#service password-encryption 
 >
@@ -273,3 +342,6 @@ show user 查看用户接入方式
 > 
 
 > 默认telnet无法连接，可以设置line模式下 no login
+=======
+> banner exec (packet tracer无法模拟此)
+>>>>>>> f35c35d930580047c0ef0883dc1d53dda8ad8e69
