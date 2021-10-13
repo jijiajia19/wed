@@ -165,3 +165,111 @@ arp 建立对应关系；保存到本地；
 >
 > delete filename 删除文件
 >
+
+> R1#conf t R1(config)#service password-encryption 
+>
+> R1(config)#exit R1
+>
+> #show running-config
+>
+> 
+>
+> 取消系统口令加密
+> cisco(config)# **no service password-encryption 
+> **取消加密不会将已加密的口令恢复为可阅读文本，但是新设置的密码将会以明文存在
+
+
+
+## 恢复系统 使用rom(ROM Monitor)
+
+** 必须使用第一个接口连接服务器
+
+恢复系统，原有配置文件也会被清空；
+
+erase startup-contig 恢复出厂设置
+
+copy tftp  running-config
+
+copy startup-config tftp
+
+
+
+> 配置寄存器位含义：
+>
+> 位号          十六进制含义
+>
+> 00-030x0000-0x000F         启动域在系统引导提示0x0001的参数0x0000逗留引导在EPROM 0x0002-0x000F的系统镜像指定默认网络引导文件名。
+>
+> 060x0040忽略NVRAM内容。
+>
+> 070x0080被启用的OEM位排除在引导程序消息的详细资料。
+>
+> 080x0100被禁用的中断。
+>
+> 100x0400与所有零的IP广播。
+>
+> 11-120x0800-0x1000控制台线路速度。
+>
+> 13 个0x2000引导程序默认ROM软件，如果网络引导程序发生故障。
+>
+> 140x4000IP广播没有净编号。
+>
+> 150x8000Enable (event)诊断消息和忽略NVRAM内容。
+>
+> 
+>
+> 配置寄存器的默认设置是0x2102。这表明[路由器](https://links.jianshu.com/go?to=http%3A%2F%2Fwww.lonlian.com%2Fproduct1%2Fproduct1_396_1.html)应该尝试从闪存装载Cisco IOS软件镜像和装载启动配置。
+
+
+
+# IOS file 
+
+> dir
+>
+> copy
+>
+> show file
+>
+> delete 
+>
+> erase
+>
+> cd/pwd
+>
+> mkdir/rmdir
+
+
+
+shortcut:ctrl+a/e 光标跳转，ctrl+u 清除命令
+
+# Line
+
+line是一个虚拟概念,重点是cty(console)和vty(telnet/ssh)
+
+show line查看外部登录的用户
+
+show user 查看用户接入方式
+
+一般允许3-5个console用户
+
+配置console：
+
+> line con 0
+>
+> password jacle
+>
+> login
+
+> line con 0
+>
+> exe
+>
+> exec-timeout 0 10
+
+
+
+> 二层交换机、三层路由器，也有三层交换机
+>
+> 
+
+> 默认telnet无法连接，可以设置line模式下 no login
