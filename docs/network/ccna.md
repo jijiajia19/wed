@@ -426,3 +426,7 @@ confreg 0x2142 返回一个空白的startup-configuration
 > arp是存在客户端网卡里面
 >
 > 交换机存储的是端口和mac的映射表（类似bridge）
+
+
+
+## STP生成树协议
