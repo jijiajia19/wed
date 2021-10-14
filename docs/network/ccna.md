@@ -426,12 +426,12 @@ confreg 0x2142 返回一个空白的startup-configuration
 > arp是存在客户端网卡里面
 >
 > 交换机存储的是端口和mac的映射表（类似bridge）
->
-> arp -a 查看ip对应mac地址
->
-> 网络故障，会重新计算最新路径，默认30s
->
-> >- 每个switch内部timer定时flush mac address-table，会出现无法查询mac 路径的情况
+
+>arp -a 查看ip对应mac地址
+> 
+>网络故障，会重新计算最新路径，默认30s
+> 
+>>- 每个switch内部timer定时flush mac address-table，会出现无法查询mac 路径的情况
 > >
 > >  重新ping，会产生arp，会继续生成 mac address-table
 > >
@@ -461,3 +461,167 @@ confreg 0x2142 返回一个空白的startup-configuration
 > > - access port --vlan绑定的端口 
 > > - switch接收和发送，都是没有tag的
 > > - truck port 多个vlan的连接端口
+
+
+
+
+## STP生成树协议
+
+
+
+
+
+## vlan(802.1q协议)
+
+show vlan brief 显示vlan列表
+
+>vlan 10
+>
+>name HR
+>
+>vlan 20
+>
+>name IT
+>
+>#物理接口映射到vlan
+>
+>Switch(config)#interface fa0/2
+>
+>Switch(config-if)#switchport mode access
+>
+>Switch(config-if)#switchport access vlan 10
+>
+>Switch(config-if)#interface fa0/3
+>
+>Switch(config-if)#switchport mode access
+>
+>Switch(config-if)#switchport access vlan 20
+>
+>
+>
+>#trunck配置
+>
+>#链路有多个vlan共用,数据此时有vlan标记
+>
+>interface fa0/0
+>
+>switch mode trunk
+>
+>#老式交换机要进行协议设定
+>
+>Switch(config-if)#sw mode trunk
+>
+>Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode.
+>
+>switchport ttrunk encapsulation dot1q
+>
+>
+>
+>#trunk dtp配置
+>
+>三种配置方式
+>
+>
+>
+>dtp trunk动态配置协议
+>
+>#不使用dtp协议
+>
+>sw mode trunk
+>
+>sw nonegotiate
+
+>#允许固定的vlan通过
+>
+>interface fa0/0
+>
+>switchport trunk allow  vlan  10,20,30
+>
+>show interface trunk
+>
+>
+>
+>#配置完之后，要等待一段时间，交换机进行收敛
+>
+>#实际使用不配置DTP
+
+
+
+
+
+##  大量配置vlan（VTP）
+
+目的：使交换机之间配置同步，VTP是cisco的私有协议
+
+cs架构
+
+版本：1,2,3
+
+角色：server ,client, transparent(传递)
+
+VTP必须在trunk上进行配置
+
+
+
+> vtp version 2
+>
+> #所有交换机默认mode server
+>
+> vtp mode server
+>
+> vtp domain jacle.com
+>
+> vtp password larryjacle
+>
+> do show vtp status
+>
+> 
+>
+> #transparent不需要配置密码
+>
+> vtp version 2
+>
+> vtp mode transparent
+>
+> 注意：vtp协议端口都要配置成trunk，默认都是access
+>
+> int range f0/1-3
+>
+> switchport mode trunk
+>
+> #vlan brief概况
+>
+> do show vlan bri
+>
+> no vlan 50
+>
+> client无法配置vlan，必须在server上
+
+
+
+## vtp pruining(修剪)
+
+会自动修剪掉无关的交换机，防止广播风暴
+
+交换机之间会通信，决定临近交换机端口是否有活跃vlan端口，从而决定是否允许trunk link
+
+
+
+- vtp实际生产中不使用；vlan中心化影响比较大，vtp比较危险；
+
+- 如果client的rivision比server高，server会先从client同步信息，此是协议bug
+
+
+
+## native vlan
+
+trunk没有指定vlan，因为内部的native vlan(vlan 1)
+
+vlan1数据包没有tag，比较特殊
+
+***重点理解
+
+
+
+
+
