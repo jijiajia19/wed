@@ -415,7 +415,7 @@ confreg 0x2142 返回一个空白的startup-configuration
 
 
 
-# 二层交换
+# 二层交换(重点：如何解决环路)
 
 > repeater\hub\bridge
 >
@@ -426,3 +426,38 @@ confreg 0x2142 返回一个空白的startup-configuration
 > arp是存在客户端网卡里面
 >
 > 交换机存储的是端口和mac的映射表（类似bridge）
+>
+> arp -a 查看ip对应mac地址
+>
+> 网络故障，会重新计算最新路径，默认30s
+>
+> >- 每个switch内部timer定时flush mac address-table，会出现无法查询mac 路径的情况
+> >
+> >  重新ping，会产生arp，会继续生成 mac address-table
+> >
+> >- 纯粹是2层网络，我们才能够通过mac address-table来追踪路径
+> >
+> >- 交换机是通过mac address-table进行转发数据包
+
+
+
+> 交换机主要依靠switch table
+>
+> switch table构建过程类似arp的mac-ip缓存表
+>
+> - 单个交换机收到未知单播帧的时候，会进行广播
+> - 多个交换机（环路stp），会选择一条最优的路径
+
+
+
+## vlan
+
+> vlan增加广播域，但是减小了网络规模
+>
+> vlan一个交换机可以配置2-1005个，1006-4094都被内部预定了
+>
+> port分为两类
+>
+> > - access port --vlan绑定的端口 
+> > - switch接收和发送，都是没有tag的
+> > - truck port 多个vlan的连接端口
