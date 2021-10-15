@@ -650,3 +650,13 @@ vlan1数据包没有tag，比较特殊
 
 防止 vlan sprofing
 
+- ```
+  带tag的帧从access是可以进入交换机的，如果带的tag是VLAN 1，完全可以通
+  ```
+
+- 独立的软件:Smartbits 发包测试软件
+
+## vlan deployment
+
+- 端到端vlan  二层交换机
+- local vlan 三层交换机(推荐)--vlan1跟vlan11、vlan12之间需要互连
