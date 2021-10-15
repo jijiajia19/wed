@@ -513,7 +513,7 @@ show vlan brief 显示vlan列表
 >
 >Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode.
 >
->switchport ttrunk encapsulation dot1q
+>switchport trunk encapsulation dot1q
 >
 >
 >
@@ -619,9 +619,34 @@ trunk没有指定vlan，因为内部的native vlan(vlan 1)
 
 vlan1数据包没有tag，比较特殊
 
-***重点理解
+***重点理解 native vlan 不会打标签，可以设置多个switch native vlan不一致，从而不同vlan网络数据包转发，从而机器互连
+
+- 不同vlan机器，通过修改navive vlan也是可以互连
+- cisco交换机 native不一致，有保护，可以关闭 no spanning-tree vlan 20
 
 
 
+> 802.1Q native vlan
+> 1、在一个交换网络中,帧有两种格式:标记帧和未标记帧.
+> 2、Native VLAN是TRUNK上才有的概念.主要的目的是不丢弃非标记帧.接收方交换机把所有接收到
+> 的未标记的数据包转发到NATIVE VLAN中,而不是丢弃.默认是VLAN1.
+> 3、要求TRUNK两侧的NATIVE VLAN必须相同,如果不匹配,链路不能正常工作.因为,如果NATIVE不一
+> 致,STP会让端口处于PVID不一致状态,在链路上不会转发流量.
+> 4、属于NATIVE VLAN的帧在802.1Q TRUNK上传输的时候不标记。
+> 5、CDP版本2在CISCO交换机之间传送NATIVE VLAN的信息，如果不匹配，会在控制台上看到CDP出错
+> 消息。
+> 6、交换机上的每个端口都有一个称为PVID(端口VLAN ID)的参数.根据端口的设定，交换机为每个
+>
+> 802.1Q端口分配一个PVID值.所有交换机都把未标记的帧分配到PVID参数所指定的VLAN.
+> -----------------------------------
 
+
+
+## 网络安全
+
+- 关闭不使用的端口
+- trunk port 不要连接终端设备
+- 关闭dtp，使用nonegotiate
+
+防止 vlan sprofing
 
