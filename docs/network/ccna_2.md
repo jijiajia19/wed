@@ -29,15 +29,43 @@
 >
 > 1. 802.1d stp最初的版本
 >
->    - root brige
+>    - root brige(选取完之后，从rb开始发送bpdu)
 >
 >      通电会选取root brige,bridge id=priority(32768 default)+mac (base mac address,using for elect)
 >
->    - root port
+>    - root port(面向rp的cost最小的端口，非rp自身端口)--面向作用：选取路径path
+>
+>      -- 仅仅入inbox叠加cost
 >
 >    - designated port
 >
 >    - elect blocking port
+>    
+> 2. rp的选取(最低的数值)--(相同条件，看sender的bid，此时用来进行rp选取)
 >
->    ![image-20211015183035586](C:\Users\Jacle\AppData\Roaming\Typora\typora-user-images\image-20211015183035586.png)
+>    - cost最小,带宽速度问题
+>
+>    - 每个交换机都有一个RP
+>
+>    - 相同的cost，此时比较sender的BID
+>
+>    - send port priority (默认128)
+>
+>    - port id=send port priority+port number
+>
+>    - 查看stp状态：show spanning-tree
+>
+>    - rp端口另一端一定是一个dp
+>
+>      
 
+​                  3、dp端口选取(指定端口)
+
+> - 每个rb交换机端口都是dp
+> - 每个物理链路都有一个dp
+> - 最小的cost，最小的bid
+>
+> 4、最后剩下的就是blk port
+>
+> - 只能接受bpdu，无法发送
+> - 其他类型的数据包，都会被丢弃
