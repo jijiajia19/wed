@@ -45,7 +45,7 @@
 >
 >    - cost最小,带宽速度问题
 > - 每个交换机都有一个RP
->    - 相同的cost，此时比较sender的BID
+>    - 相同的cost，此时比较sender的BID(priority+base mac)
 > - send port priority (默认128)
 >    - port id=send port priority+port number
 > - 查看stp状态：show spanning-tree
@@ -60,7 +60,7 @@
 
 > - 每个rb交换机端口都是dp
 > - 每个物理链路都有一个dp
-> - 最小的(交换机到根桥的路径)cost，最小的bid(priority+base mac)
+> - 最小的(交换机到根桥的路径)cost，最小的bid(priority+base mac),这里的bid，不是sender bid
 >
 > 4、最后剩下的就是blk port
 >
@@ -75,6 +75,7 @@ pvst+(show:ieee),rpvst(show:rstp),mpt
 >
 > ​	
 >
-> - 一条链路肯定有单个端口是DP，最多有一个RP
+> - 一条链路肯定有单个端口是DP，一个switch一定有一个RP
 >
 > - RP对应端口是DP
+
