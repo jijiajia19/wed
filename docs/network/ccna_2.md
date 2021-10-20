@@ -1,3 +1,13 @@
+## 端口状态
+
+1. disabled 不能发送和接收包，或者没有插线
+2. blocking 只能接收bpdu，不能发送和接收其他的包
+3. listening  可以发送和接收bpdu
+4. learning  可以发送和接收bpdu，学习mac addess table
+5. forwarding 转发，最终形态
+
+
+
 ## STP生成树协议
 
 > - 没有冗余的网络，风险高(redundancy)
