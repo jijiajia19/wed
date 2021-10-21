@@ -61,3 +61,87 @@ Root Guard防止ROOT改变；
 
 stp产生的时机：有转发端口；或者是连接了终端;
 
+默认打开root guard，如果发送的不是最优的bpdu，不能进行root切换；
+
+
+
+>  spanning-tree guard root
+
+
+
+> Switch#show spanning-tree inconsistentports
+>
+> Name                 Interface            Inconsistency
+>
+> -------------------- -------------------- ------------------
+>
+> VLAN0001             FastEthernet0/4      Root Inconsistent
+>
+> 
+>
+> Number of inconsistent ports (segments) in the system : 1
+
+此时交换机端口不能进行任何转发；
+
+
+
+## LOOP GUARD
+
+> 单向链路故障
+>
+> stp是防止物理层面的拓扑环路；
+>
+> 交换机内部是软件的逻辑环路；
+>
+> per-vlan的
+
+
+
+> RP,BLK非指定端口都应该开启LOOP GUARD
+
+
+
+## UDLD
+
+> 监测光纤单向链路故障
+>
+> 类似 ping的工作方式
+>
+> - normal
+> - aggresive
+
+
+
+## 网络可视化
+
+> Switch(config)#monitor session 1 source interface f0/1 both
+>
+> Switch(config)#monitor session 1 destination interface f0/3
+>
+> Switch(config)#exit
+>
+> Switch#
+>
+> %SYS-5-CONFIG_I: Configured from console by console
+>
+> 
+>
+> Switch#show monitor session 1
+>
+> Session 1
+>
+> \---------
+>
+> Type                   : Local Session
+>
+> Description            : -
+>
+> Source Ports           : 
+>
+> ​    Both               : Fa0/1
+>
+> Destination Ports      : Fa0/3
+>
+> ​    Encapsulation      : Native
+>
+> ​          Ingress      : Disabled
