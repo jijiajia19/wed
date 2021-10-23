@@ -104,3 +104,60 @@
 
 > - 交换机只要接端口的设备，才可以设置IP地址
 > - 不通vlan通信通过路由实现（低效——路由端口数量少）
+
+
+
+>vlan连接switch使用trunk
+>
+>router配置为子接口
+>
+>注意：利用子接口减少使用路由端口的数目
+
+> Router(config)#int g0/0.30
+>
+> Router(config-subif)#
+>
+> %LINK-5-CHANGED: Interface GigabitEthernet0/0.30, changed state to up
+>
+> 
+>
+> %LINEPROTO-5-UPDOWN: Line protocol on Interface GigabitEthernet0/0.30, changed state to up
+>
+> 
+>
+> Router(config-subif)#en
+>
+> Router(config-subif)#encapsulation do
+>
+> Router(config-subif)#encapsulation dot1Q 30
+>
+> Router(config-subif)#ip address 30.30.30.1 255.0.0.0
+
+
+
+## 三层交换机
+
+### 三种模式:
+
+- 二层端口 switchport
+- 三层端口 no switchport
+- svi端口 interface vlan vlanId 逻辑上的三层接口，实现inverVLAN routing
+
+
+
+> interface vlan 10
+>
+> ip address 10.10.10.1 255.0.0.0
+>
+> #类似于vlan的默认网关
+
+> 三层交换机路由表无显示，此时需要打开开关 
+>
+> ip routing
+
+
+
+## SVI
+
+三层交换机的模式，三种模式可以共存
+
