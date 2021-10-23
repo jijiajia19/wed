@@ -1,3 +1,13 @@
+## 端口状态
+
+1. disabled 不能发送和接收包，或者没有插线
+2. blocking 只能接收bpdu，不能发送和接收其他的包
+3. listening  可以发送和接收bpdu
+4. learning  可以发送和接收bpdu，学习mac addess table
+5. forwarding 转发，最终形态
+
+
+
 ## STP生成树协议
 
 > - 没有冗余的网络，风险高(redundancy)
@@ -46,26 +56,28 @@
 >       定义：离root最近（cost）的端口
 >
 >    - cost最小,带宽速度问题
->
->    - 每个交换机都有一个RP
->
->    - 相同的cost，此时比较sender的BID
->
->    - send port priority (默认128)
->
+> - 每个交换机都有一个RP
+>    - 相同的cost，此时比较sender的BID(priority+base mac)
+> - send port priority (默认128)
 >    - port id=send port priority+port number
+      <<<<<<< HEAD
 >
 >    - 查看stp状态：show spanning-tree
 >    
+
 >    - rp端口另一端一定是一个dp
+> - rp的cost只会计算inside cost
 >
 > 
 
-​                  3、dp端口选取(指定端口)
+
+​                  
+
+3、dp端口选取(指定端口)
 
 > - 每个rb交换机端口都是dp
 > - 每个物理链路都有一个dp
-> - 最小的cost，最小的bid
+> - 最小的(交换机到根桥的路径)cost，最小的bid(priority+base mac),这里的bid，不是sender bid
 >
 > 4、最后剩下的就是blk port
 >
@@ -164,7 +176,13 @@ root brige开始广播，通知网络发送改变，开始重新收敛,在此之
 
 ---
 
+pvst+(show:ieee),rpvst(show:rstp),mpt
 
-
-
+> pvst+:每个vlan都有个stp示例，报文头部新增vlan id
+>
+> ​	
+>
+> - 一条链路肯定有单个端口是DP，一个switch一定有一个RP
+>
+> - RP对应端口是DP
 
