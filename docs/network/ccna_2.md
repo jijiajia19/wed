@@ -40,8 +40,10 @@
 >    - designated port
 >
 >    - elect blocking port
->    
+>
 > 2. rp的选取(最低的数值)--(相同条件，看sender的bid，此时用来进行rp选取)
+>
+>       定义：离root最近（cost）的端口
 >
 >    - cost最小,带宽速度问题
 >
@@ -54,10 +56,10 @@
 >    - port id=send port priority+port number
 >
 >    - 查看stp状态：show spanning-tree
->
+>    
 >    - rp端口另一端一定是一个dp
 >
->      
+> 
 
 ​                  3、dp端口选取(指定端口)
 
@@ -69,3 +71,100 @@
 >
 > - 只能接受bpdu，无法发送
 > - 其他类型的数据包，都会被丢弃
+
+
+
+## stp端口五种状态
+
+---
+
+1. disabled
+2. blocking
+3. listening
+4. learning 能够发送bpdu包，除此之外还会学习mac地址，添加到mac地址表
+5. forwarding 端口转发数据包
+
+switch端口状态转换图；
+
+
+
+## stp timer
+
+---
+
+非常重要
+
+startup->blocking (20s)
+
+​			 blocking (20s)[lost of bpdu]
+
+  						->listening(15s)->learing(15s)->forwarding
+
+所以普通用户需要等待50s，交换机收敛
+
+root bridge每隔2s会向外发送 hello time数据包
+
+### stp converge
+
+---
+
+blk端口的bpdu数据包保存20s，超过时间，或者接收的数据包不一样，此时会开始状态转换
+
+30s\50s的情况；
+
+如果网络链路发送变化，交换机会重新选举root，会首先认为自己是Root
+
+此时发送的bpdu，block port会知道网络变化了，blk port会进行端口状态转换
+
+
+
+30s的情况是，有blk端口的交换机，rp也丢失，此时不会等待20s，只有30s
+
+switch的mac table默认储存300s，只有等mac address table情况，才会连通；时间：5分钟(switch mac address table timer)
+
+
+
+## 解决五分钟问题
+
+---
+
+利用tcn bpdu数据包告诉网络；此时mac address timeout默认为15s，持续35s
+
+此原理机制的重点：通知bpdu到整个网络；
+
+- 2s每次发送的是conf bpdu
+- 通知网络发送变化的是tcn bpdu(简化的数据包，只包含type)
+
+topylogy_change(拓扑变化)的定义：
+
+- 端口forwarding ，忽然不能转发了
+- forwarding端口变为了design port，普通switch有了dp，表明不是单独的switch
+
+root brige开始广播，通知网络发送改变，开始重新收敛,在此之前通过tcn，tca来得到网络拓扑改变通知;
+
+- tcn是朝着root发送的
+
+之后开始发送特殊的configuration bpdu（tc bit）通知整个网络,并且mac address table设置为默认15s，持续35s
+
+---
+
+特殊情况：rp断掉了，root会马上侦测到，此时马上发送tcn，此时立即设置mac address table reduce，因为此时rp无法收到tcn
+
+
+
+## 新的问题TCN Flood
+
+---
+
+网络越大，TCN广播影响会特别大
+
+
+
+## stp历史演变
+
+---
+
+
+
+
+
