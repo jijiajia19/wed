@@ -75,3 +75,7 @@ default g0/0删除接口下面的所有配置
 >  - standby  10 preempt   故障切换后，自动恢复
 >  - 备份路由不用设置tracer
 >  - standby 1 timers 3 10//设置Hellotime为3秒，Holdtime为10秒，默认即为该值
+
+
+
+> default int g0/0/1
