@@ -79,3 +79,19 @@ default g0/0删除接口下面的所有配置
 
 
 > default int g0/0/1
+
+
+
+> HSRP不是真正的负载均衡
+>
+> vlan的load balance
+
+
+
+均可配置HSRP实现负载均衡(vlan交错standby)，链路冗余;
+
+> 三层交换机
+>
+> 路由器
+>
+> SVI

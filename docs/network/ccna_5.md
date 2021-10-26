@@ -161,3 +161,72 @@
 
 三层交换机的模式，三种模式可以共存
 
+> 利用svi接口来互联vlan，原理：svi接口在路由上面是直连接口
+
+> 如果路由网关接口不够，可以使用svi来处理vlan，或一般使用
+
+> 子接口的配置方法（非三层交换机）
+>
+> interface GigabitEthernet0/0.10
+>
+>  encapsulation dot1Q 10
+>
+>  ip address 10.10.10.1 255.0.0.0
+>
+> !
+>
+> interface GigabitEthernet0/0.20
+>
+>  encapsulation dot1Q 20
+>
+>  ip address 20.20.20.1 255.0.0.0
+>
+> !
+>
+> interface GigabitEthernet0/0.30
+>
+>  encapsulation dot1Q 30
+>
+>  ip address 30.30.30.1 255.0.0.0
+
+
+
+> 注意:
+>
+> svi需要绑定到指定端口
+>
+> svi上要设置vlan号
+>
+> 
+
+## 动态路由
+
+OSPF，打开此协议，路由器之间会相互通信，互通有无；
+
+- RIP很少用
+- EIGRP cisco专有
+- OSPF
+- BGP 用于公司或者ISP网络（广域网）
+- ISIS 非常常见，ISP使用居多
+
+> 动态路由类型：
+>
+> 	- distance vector--RIP 周期性交换路由表
+> 	- link state OSPF--只发送变更信息,每个地点，都能找到最优路径
+> 	- advanced distance vector 前两种融合
+
+
+
+### AD
+
+administrative distance (0-255)
+
+静态路由的路径比OSPF小
+
+[ad/metric]
+
+OSPF-110
+
+> 更改AD为255，路由此时不可用
+>
+> 配置出站接口，配置静态路由的AD就是0
