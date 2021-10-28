@@ -193,11 +193,25 @@
 
 > 注意:
 >
-> svi需要绑定到指定端口
+> svi需要绑定到指定端口，此接口必须是access类型,绑定之后，此接口IP根据vlanID自动绑定
 >
 > svi上要设置vlan号
+
+
+
+> 三层交换机设置成trunk:
 >
-> 
+> 　Switch(config-if)#switchport mode trunk
+>
+> 　　Command rejected: An interface whose trunk encapsulation is "Auto" can not be configured to "trunk" mode.
+>
+> 　　解决方法：
+>
+> 　　Switch(config-if)#switchport trunk encapsulation dot1q
+>
+> 　　Switch(config-if)#switchport mode trunk
+>
+> 　　先配置封装，再设置trunk
 
 ## 动态路由
 
@@ -217,7 +231,7 @@ OSPF，打开此协议，路由器之间会相互通信，互通有无；
 
 
 
-### AD
+### AD(多种路由协议优先级选择)
 
 administrative distance (0-255)
 
@@ -230,3 +244,21 @@ OSPF-110
 > 更改AD为255，路由此时不可用
 >
 > 配置出站接口，配置静态路由的AD就是0
+
+
+
+metric表示目标网段离我还有2hop;
+
+connect interface配置静态路由，指定端口时，此时AD是0
+
+
+
+> 注意：路由器各端口设置的网段要不一样，否则无法配置，会报错：
+>
+> % 10.0.0.0 overlaps with GigabitEthernet0/0/1
+
+
+
+> Router(config)#ip route 192.168.0.0 255.255.255.0 g0/0/0
+>
+> %Default route without gateway, if not a point-to-point interface, may impact performance
