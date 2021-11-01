@@ -1,5 +1,9 @@
 ## 路由协议
 
+### RIP
+
+---
+
 1. RIP 路由矢量协议
 
    每隔30s更新路由表
@@ -55,3 +59,99 @@
 > 注意：汇总的那台路由，一定要设置双向路由，否则无法连通；
 >
 > 
+
+6. RIP路由水平分割
+
+   > 从路由学到路径，不能从路由在原路返回
+
+7. 路由中毒
+
+   > 发送路由更新：网络段不可达
+
+> 只有直连的网段，才会发送metric为16的路由信息，此时表示不可达
+
+
+
+### EIGRP
+
+---
+
+类型：混合协议，advanced distance vector
+
+只会发送路由更新；
+
+默认情况：带宽和延迟,但是可以设置其他的算法；
+
+> 延迟在cisco中显示的是micro,micro second=delay*10
+
+
+
+>route ei 1
+>
+>net 0.0.0.0 255.255.255.255
+>
+>show ip route eigrp
+>
+>show ip ei neigbour
+
+
+
+- eigrp neighbour
+
+  邻居发现;
+
+  - 发送hello msg 默认5s
+  - as number match 自治管理域
+  - 相同的k value,identical metrics相同的metrics
+
+- 配置EIGRP
+
+- > 1. router eigrp [as-num]
+  > 2. network ip wildcard-mask(255-掩码)
+
+注：打断DNS解析，快捷键:ctrl+shift+6
+
+> router ei 123
+>
+> network 10.255.1.0 0.0.0.3
+>
+> --其中可以配置IP地址、IP网段
+>
+> 可以把单个接口放置到EIGRP里面 
+>
+> --反掩码能够直接看出同网段地址
+
+---三种配置方式:
+
+- 单个地址开启
+- 指定网段开启
+- 所有端口均开启 0.0.0.0 255.255.255.255
+
+不存在的IP会自动换位网段；
+
+> Qcon=0表示邻居建立成功!
+>
+> show ip eigrp nei
+>
+> show ip route ei
+>
+> show ip ei topology
+
+
+
+### 路由汇总
+
+---
+
+路由汇总为了减少路由表，自动将IP进行主类汇总；
+
+如果汇总的一样，会产生环路；
+
+> router ei 123
+>
+> no auto-summary
+
+---
+
+### EIGRP快速收敛
+
