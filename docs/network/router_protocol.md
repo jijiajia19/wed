@@ -155,3 +155,31 @@
 
 ### EIGRP快速收敛
 
+---
+
+EI会自动计算一个备用路由
+
+EI是在硬件上进行计算路由，速度更快
+
+- 主路由
+- 备路由
+- 询问邻居路由
+
+EI的三张表：
+
+- nei table 存放直连的EI 路由
+- topology table 存放所有的路由路径
+- routing table 存放最优的路径
+
+FD:最小的metrics
+
+RD:下一跳最优路由metrics
+
+Successor:最优路径
+
+FS: feasibility condition
+
+
+
+
+
