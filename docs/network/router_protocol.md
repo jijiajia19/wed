@@ -171,15 +171,66 @@ EI的三张表：
 - topology table 存放所有的路由路径
 - routing table 存放最优的路径
 
-FD:最小的metrics
-
-RD:下一跳最优路由metrics
-
-Successor:最优路径
-
-FS: feasibility condition
-
-
+> FD:本地路由到达目标网段的metrics  存储在拓扑表
+>
+> RD/AD:下一跳路由到目标网段的最优路径
+>
+> Successor:最优路径
+>
+> FS: feasibility condition
 
 
+
+> 本地路由器的RD，其实是下一跳的FD
+>
+> FC条件:
+>
+> ​	RD<successor的FD
+>
+> 保证备用路由，之后的路径不会走自己，从而避免环路；
+>
+> 非完美的Condition:没有环路的路由不一定满足FC，不会作为备用路由
+
+
+
+> EIGRP的Query和Reply，根据网络大小会响应时间会很长和很短
+>
+> EIGRP之间通过RD发送来计算FD
+
+> metric越小越好
+
+
+
+### eigrp passive interface
+
+---
+
+- passive接口不接收，不处理
+- passive的路由邻居无法建立连接
+
+> router ei 1
+>
+> passive-interface g0/0
+
+
+
+> 注入默认路由:
+>
+> ​	ip route 0.0.0.0 0.0.0.0 34.34.34.4
+>
+>    通过单个接口来注入，是有方向的
+>
+> ​	int e0/1
+>
+> ​	ip summary-address ei 1 0.0.0.0 0.0.0.0
+>
+> 方法2：路由重分布，不通路由协议之间重分布
+
+
+
+Load Balance
+
+> eigrp是非等价的负载均衡
+>
+> 默认情况下4条负载均衡，metric一样
 
