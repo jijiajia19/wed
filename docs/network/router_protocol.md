@@ -183,7 +183,7 @@ EI的三张表：
 
 > 本地路由器的RD，其实是下一跳的FD
 >
-> FC条件:
+> FC条件(备用路由条件):
 >
 > ​	RD<successor的FD
 >
@@ -230,7 +230,62 @@ EI的三张表：
 
 Load Balance
 
-> eigrp是非等价的负载均衡
+> eigrp也可以实现非等价的负载均衡
 >
 > 默认情况下4条负载均衡，metric一样
+>
+> 最优路径*因子=最大的路径数值，此时可以选择多条路径
 
+
+
+---
+
+通过改延迟来实现负载均衡的变化
+
+> metric weights 参数，//来更改k delay的参数，k=0 就只有延迟参数的影响
+>
+> metric weights 0 0 0 1 0 0
+
+注意：路由的K值一定要相同，否则无法建立eigrp的路由关系；
+
+
+
+> show ip protocols 显示当前的路由协议
+>
+> 默认的variance=1
+
+
+
+> 备用路由显示:show ip route
+>
+> 显示所有的路由:show ip route topology
+
+
+
+### EIGRP 权限设置
+
+---
+
+eigrp之间信息查看通过MD5加密，并进行权限验证
+
+> Router(config-router)#router eigrp 1
+>
+> Router(config-router)#key chain Key4eigrp
+>
+> Router(config-keychain)#key 1
+>
+> Router(config-keychain-key)#key-string cisco
+>
+> Router(config-keychain-key)#exit
+
+
+
+> Router(config)#int g0/0
+>
+> Router(config-if)#ip authentication mode eigrp 1 md5 
+>
+> Router(config-if)#
+>
+> %DUAL-5-NBRCHANGE: IP-EIGRP(0) 1: Neighbor 10.1.1.2 (GigabitEthernet0/0) is down: authentication mode changed
+>
+> Router(config-if)#ip authentication key-chain  eigrp  1 Key4eigrp
