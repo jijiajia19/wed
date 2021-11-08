@@ -289,3 +289,167 @@ eigrp之间信息查看通过MD5加密，并进行权限验证
 > %DUAL-5-NBRCHANGE: IP-EIGRP(0) 1: Neighbor 10.1.1.2 (GigabitEthernet0/0) is down: authentication mode changed
 >
 > Router(config-if)#ip authentication key-chain  eigrp  1 Key4eigrp
+
+
+
+---
+
+# OSPF
+
+- 带宽
+- 层级 Hierachical
+- 事件更新
+
+可以支持大的网络设计，支持无类的IP设计；
+
+两层：
+
+- 主干区域(backbone area)
+- 非主干区域(non-backbone area)
+
+
+
+ASBR:连接外部的router
+
+ABR：连接层级间的router
+
+linkState:路由状态
+
+linkStateExchange
+
+
+
+OSPF邻居和毗邻关系
+
+邻居：
+
+- areaID
+- stub area flag
+- Auth password
+- Hello and Dead intervals
+
+邻接：
+
+- 允许之间交换路由信息
+- 依靠网络类型和配置
+- 不是所有的邻居都要变为邻接
+
+邻居变为邻接：
+
+- 双向通信
+- DD/DBD(database description)
+- LSR( link state request)
+- LSU(link state update)
+
+
+
+定期发送hello发送个主播地址，发送评率不一样，跟类型有关
+
+主播地址:224.0.0.5
+
+OSPF网络类型：4种
+
+10s:广播、点到点、
+
+30s:非广播、点到多点
+
+---
+
+### OSPF Hello Protocol
+
+ASBR:AS Boundary Routers(自治系统边界路由器)
+
+ABR:必须有一个端口连接area0主干网区域的路由器
+
+综上所述，ABSR一般是位于非OSPF区域和OSPF区域间互联的路由器，而ABR是OSPF种多个区域连接区域0间的路由器。
+
+---
+
+- Router ID 唯一识别的一串字符，代表一台路由器 （默认选择一个最大的物理IP地址）
+- neighbors
+- areaId
+- DR BDR
+- Auth
+
+
+
+1. 双向通信:
+
+​			Down->Attempt->Init->2Way
+
+2. DD/DBD
+
+​         ExState->Loading->Full
+
+3. LSDB类似拓扑表
+
+   LSDB:保存所有的路由信息
+
+   LSA:路由信息
+
+   路由表只保存最优的路由路径
+
+---
+
+OSPF网络类型：
+
+1、广播类型
+
+​    交换机相连路由(二层的广播网络)
+
+   需要大量的资源维护邻接关系；
+
+DR：主广播路由，只跟DR、BDR建立邻接关系
+
+BDR：备份的DR，只跟DR、BDR建立邻接关系
+
+
+
+2、DR的选举
+
+​	优先级设置 ip ospf priority ?<0-255>
+
+​	默认根据routerID进行选举
+
+​	优先级为0，不会参加DR、BDR的选举
+
+
+
+> show ip ospf g0/0/0
+>
+> show ip ospf neighbour
+>
+> p2p的路由网络类型，没有DR、BDR
+>
+> 跟点到点的接口有关系，跟网络拓扑没有多大的关系
+>
+> 更改了priority，不会进行立即收敛，网络减少flap，必须手动进行flap
+>
+> 
+
+
+
+> LSA:存储在LSDB
+>
+> LSA其中的A表示advertisement宣告
+>
+> LSA类型:1\2\3\4\5\7主要的
+>
+> 3w学习方式：Who?What?Where?
+>
+> - 只有广播网络才会产生Type2 的LSA
+>
+> Type1:
+>
+> Type2:广播网
+>
+> Type3:summary路由信息,区域间路由更新，ABR整合信息发送，边界路由器会隐藏其他路由网络
+>
+> 同时也缩小了路由表的大小
+>
+> Type5:ASBR发送外部的路由信息，整个网络
+>
+> Type4:ASBR summary汇总更新路由信息，告诉怎么到达ASBR,ABR产生
+>
+> 
+
