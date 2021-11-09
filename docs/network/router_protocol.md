@@ -439,21 +439,182 @@ BDR：备份的DR，只跟DR、BDR建立邻接关系
 >
 > - 只有广播网络才会产生Type2 的LSA
 >
-> Type1:路由信息
+> Type1:路由信息，在各自area的内部
 >
-> Type2:广播网
+> Type2:广播网,在area内部，针对广播网才会产生(可以理解为特例)
 >
 > 1\2产生于各自的区域
 >
 > 
 >
-> Type3:summary路由信息,区域间路由更新，ABR整合信息发送，边界路由器会隐藏其他路由网络
+> Type3:
 >
-> 同时也缩小了路由表的大小
->
-> Type5:ASBR发送外部的路由信息，整个网络\ASBR
->
-> Type4:ASBR summary汇总更新路由信息，告诉怎么到达ASBR,ABR产生
+> - summary路由信息,区域间路由更新，ABR整合信息发送，
+> - 边界路由器会隐藏其他路由网络，同时也缩小了路由表的大小,inter-area-router
+> - 覆盖在整个网络，通过边界路由器
+> - 内部路由update信息
 >
 > 
+>
+> Type5:ASBR发送外部的路由信息，整个网络\ASBR，不会修改路由信息，直接转发，知道external AS的地址网段，路由端口地址
+>
+> Type4:ASBR summary汇总更新路由信息，告诉怎么到达ASBR,ABR产生到单个的区域里面。
 
+
+
+### OSPF的Metrics
+
+Metrics的基准(reference unit)是10^8（100Mbps）
+
+- 可以修改reference，来区分1G\10G\100M
+- 可以直接更改端口的OSPF Cost
+
+
+
+### OSPF CONF
+
+---
+
+> router ospf 1
+>
+> router-id 1.1.1.1
+>
+> #有区域，跟eigrp区别之处
+>
+> network 10.0.0.0 0.255.255.255 area 0 
+>
+> 反掩码能够直接看出子网网段范围
+
+
+
+> 子网掩码可以转换反掩码
+>
+> 反掩码不是都能转换为子网掩码
+>
+> 使用反掩码，比掩码更加灵活,具体支持看设备的操作系统版本
+
+
+
+---
+
+OSPF能够做到等价链路负载均衡 4条默认
+
+OSPF无法做到费等价链路负载均衡
+
+> Router#show ip protocols
+>
+> 
+>
+> Routing Protocol is "ospf 1"
+>
+>   Outgoing update filter list for all interfaces is not set 
+>
+>   Incoming update filter list for all interfaces is not set 
+>
+>   Router ID 192.168.10.49
+>
+>   Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+>
+>   Maximum path: 4
+>
+>   Routing for Networks:
+>
+> ​    10.255.255.0 0.0.0.255 area 0
+>
+>   Routing Information Sources:  
+>
+> ​    Gateway         Distance      Last Update 
+>
+> ​    192.168.10.17        110      00:02:03
+>
+> ​    192.168.10.49        110      00:02:03
+>
+>   Distance: (default is 110)
+
+
+
+
+
+显示ospf的信息
+
+> Router#show ip ospf
+>
+>  Routing Process "ospf 1" with ID 192.168.10.49
+>
+>  Supports only single TOS(TOS0) routes
+>
+>  Supports opaque LSA
+>
+>  SPF schedule delay 5 secs, Hold time between two SPFs 10 secs
+>
+>  Minimum LSA interval 5 secs. Minimum LSA arrival 1 secs
+>
+>  Number of external LSA 0. Checksum Sum 0x000000
+>
+>  Number of opaque AS LSA 0. Checksum Sum 0x000000
+>
+>  Number of DCbitless external and opaque AS LSA 0
+>
+>  Number of DoNotAge external and opaque AS LSA 0
+>
+>  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+>
+>  External flood list length 0
+>
+> ​    Area BACKBONE(0)
+>
+> ​        Number of interfaces in this area is 2
+>
+> ​        Area has no authentication
+>
+> ​        SPF algorithm executed 4 times
+>
+> ​        Area ranges are
+>
+> ​        Number of LSA 5. Checksum Sum 0x029e0c
+>
+> ​        Number of opaque link LSA 0. Checksum Sum 0x000000
+>
+> ​        Number of DCbitless LSA 0
+>
+> ​        Number of indication LSA 0
+>
+> ​        Number of DoNotAge LSA 0
+>
+> ​        Flood list length 0
+
+
+
+显示数据库的信息:
+
+> Router#show ip ospf da
+>
+> ​            OSPF Router with ID (192.168.10.49) (Process ID 1)
+>
+> 
+>
+> ​                Router Link States (Area 0)
+>
+> 
+>
+> Link ID         ADV Router      Age         Seq#       Checksum Link count
+>
+> 192.168.10.17   192.168.10.17   1689        0x80000003 0x00533a 2
+>
+> 192.168.10.49   192.168.10.49   510         0x80000005 0x009484 2
+>
+> 192.168.10.65   192.168.10.65   510         0x80000002 0x00c171 1
+>
+> 
+>
+> ​                Net Link States (Area 0)
+>
+> Link ID         ADV Router      Age         Seq#       Checksum
+>
+> 10.255.255.9    192.168.10.49   682         0x80000002 0x00c9cd
+>
+> 10.255.255.82   192.168.10.49   510         0x80000003 0x002b10
+
+
+
+> 根据database将OSPF拓扑图画出来，OSPF协议理解的高级部分；
