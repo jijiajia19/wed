@@ -618,3 +618,33 @@ OSPF无法做到费等价链路负载均衡
 
 
 > 根据database将OSPF拓扑图画出来，OSPF协议理解的高级部分；
+
+---
+
+> OSPF Passive Interface
+>
+> 会断开邻居关系，但是网络还是可达的，会对外宣称网络
+>
+> router ospf 1
+>
+> passive-interface g0/0
+
+---
+
+> OSPF Default Router Injection
+>
+> router ospf 1
+>
+> default-information originate
+>
+> default-information originate always
+
+---
+
+### ECMP Load Balance
+
+> 更改端口的COST:
+>
+> int g0/0
+>
+> ip ospf cost 119
