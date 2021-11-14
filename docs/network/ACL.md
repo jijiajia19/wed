@@ -133,5 +133,71 @@ extend acl可以通过seq进行规则删除；
 
 extend acl可以进行seq指定的规则增加;
 
+> R1(config)#ip access-list extended acl1
+>
+> R1(config-ext-nacl)#5 permit eigrp any any
+>
+> R1(config-ext-nacl)#permit tcp host 192.168.10.1 host 10.10.10.10 eq ftp
+>
+> R1(config-ext-nacl)#permit tcp 192.168.20.0 0.0.0.255 host 10.10.10.10 eq www
+>
+> R1(config-ext-nacl)#permit icmp 192.168.30.0 0.0.0.255 host 10.10.10.10 
 
 
+
+> R1#show access-lists 
+>
+> Extended IP access list acl1
+>
+> ​    5 permit eigrp any any
+>
+> ​    15 permit tcp host 192.168.10.1 host 10.10.10.10 eq ftp
+>
+> ​    25 permit tcp 192.168.20.0 0.0.0.255 host 10.10.10.10 eq www
+>
+> ​    35 permit icmp 192.168.30.0 0.0.0.255 host 10.10.10.10
+
+
+
+> R1(config)#ip access-list  extended acl1
+>
+> R1(config-ext-nacl)#7 deny tcp host  192.168.30.1 host 10.10.10.10 eq  ftp
+
+
+
+通过named ACL，standard能够直接进行num  ACL的设置
+
+> R1(config-std-nacl)#ip acc stand 1
+>
+> R1(config-std-nacl)#11 deny any 
+>
+> R1(config-std-nacl)#do show acc
+>
+> Extended IP access list acl1
+>
+> ​    10 permit eigrp any any
+>
+> ​    20 deny tcp host 192.168.30.1 host 10.10.10.10 eq ftp
+>
+> ​    30 permit tcp host 192.168.10.1 host 10.10.10.10 eq ftp
+>
+> ​    40 permit tcp 192.168.20.0 0.0.0.255 host 10.10.10.10 eq www
+>
+> ​    50 permit icmp 192.168.30.0 0.0.0.255 host 10.10.10.10
+>
+> Standard IP access list 1
+>
+> ​    11 deny any
+>
+> Standard IP access list 2
+>
+> ​    10 deny any
+
+
+
+---
+
+### 如何选择执行路由
+
+1. 标准ACL，要靠近目标
+2. 扩展ACL，靠近源
