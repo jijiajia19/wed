@@ -119,3 +119,29 @@
 > Host                      Port  Flags      Age Type   Address(es)
 >
 > www.ccna.com              None  (temp, OK)  0   IP      192.168.0.1
+
+---
+
+### NTP
+
+> show clock 
+>
+> Router#show clock
+>
+> *1:6:16.928 UTC Mon Mar 1 1993
+>
+> Router#clock set 12:00:00 18 Oct 2021
+>
+> Router#show clock
+>
+> 12:0:2.766 UTC Mon Oct 18 2021
+>
+> Router#show clock
+>
+> 12:0:32.509 UTC Mon Oct 18 2021
+>
+> Enter configuration commands, one per line.  End with CNTL/Z.
+>
+> Router(config)#ntp master
+
+> ntp server 1.1.1.1
