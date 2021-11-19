@@ -55,3 +55,27 @@ IPV6所有子网都是64位，将64-48=16位作为网络位
 
 
 > 实验基本都用2001:DB8::/32
+
+
+
+---
+
+> ipv6 unicatst-routing
+>
+> ipv6 address
+>
+> show ipv6 route
+>
+> show ipv6 int s0/1/0
+
+---
+
+半自动方式配置IPV6
+
+EUI64自动产生link-local地址和global unicast地址
+
+手动配置prefix和subnet，64位的那部分自动产生
+
+1. 对半分加入FF:FE
+2. 第七个bit进行反转,思科的设备才会进行0->1,1->0
+
