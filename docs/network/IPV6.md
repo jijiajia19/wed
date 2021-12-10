@@ -155,6 +155,10 @@ DHCP Relay跟ip helper-address
 
 ---
 
+IPV6的路由我们可以通过两种方式来实现
+
+默认路由 ipv6 route ::/0 s0/0/0
+
 
 
 
