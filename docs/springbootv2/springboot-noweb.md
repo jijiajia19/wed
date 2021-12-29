@@ -327,3 +327,68 @@ context:
 链接：https://juejin.cn/post/6943107876994940958
 来源：稀土掘金
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+---
+
+> JS跨域访问，由于JS设置了同源策略（同域名、同端口、同协议）
+>
+> 同源政策的目的是为了防止恶意网站通过冒充用户来窃取用户的数据信息，同源策略提高了攻击成本。
+>
+> 同源策略限制了以下行为:
+>
+> - Cookie、LocalStorage 和 IndexDB 无法读取；
+> - DOM 和 JS 对象无法获取；
+> - Ajax请求发送不出去。
+
+
+
+解决跨域的方法:
+
+> 跨域资源共享 CORS;
+> 使用ajax的jsonp;
+> 使用jQuery的jsonp插件;
+> document.domain + iframe 跨域;
+> window.name + iframe 跨域;
+> location.hash + iframe 跨域;
+> postMessage跨域;
+> WebSocket协议跨域;
+> node代理跨域;
+> nginx代理跨域.
+
+> SpringBoot采用的是CORS跨域方案(cross origin resource sharing)
+>
+> 需要浏览器和服务端同时支持
+>
+> - 实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信
+
+
+
+简单请求：Content-Type只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain
+
+反之非简单请求;
+
+> ### SpringBoot中跨域实现方案
+>
+> - 全局配置实现方案
+> - 基于过滤器的实现方案
+> - @CrossOrigin注解实现方案
+>
+> 以上三种实现方法都可以解决跨域问题，最常用的是第一种和第二种两种方式。
+>
+> 如果三种方式都用了的话，则采用就近原则。
+
+
+
+
+
+> 之前是在web.xml中配置servlet、filter、listener
+>
+> **Servlet 3.0后提供了3个注解来代替:**
+>
+> - @WebServlet代替 servlet 配置；
+> - @WebFilter代替 filter 配置；
+> - @WebListener代替 listener 配置
+>
+> Spring Boot 提供了 ServletRegistrationBean, FilterRegistrationBean, ServletListenerRegistrationBean 三个类分别用来注册 Servlet, Filter, Listener。
