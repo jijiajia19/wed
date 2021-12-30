@@ -381,8 +381,6 @@ context:
 
 
 
-
-
 > 之前是在web.xml中配置servlet、filter、listener
 >
 > **Servlet 3.0后提供了3个注解来代替:**
@@ -392,3 +390,11 @@ context:
 > - @WebListener代替 listener 配置
 >
 > Spring Boot 提供了 ServletRegistrationBean, FilterRegistrationBean, ServletListenerRegistrationBean 三个类分别用来注册 Servlet, Filter, Listener。
+
+
+
+>logback-spring.xml是默认的logback日志配置文件名称
+>
+>使用了logback-spring.xml配置了之后，不需要在application.yml、application.properties中再进行配置了
+>
+>
