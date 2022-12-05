@@ -341,6 +341,102 @@ href="??color.css,color2.css"
 
   
 
+Nginx SSI Module静态化模块
+
+
+
+
+
+---
+
+Nginx黑白名单
+
+include blockip.conf
+
+allow ip;
+
+deny ip;
+
+ip国家地址库:
+
+ wget https://dl.miyuru.lk/geoip/maxmind/city/maxmind.dat.gz
+
+限流：
+
+> #速率限流配置
+> limit_req_zone $binary_remote_addr zone=ipRateLimit:10m rate=2r/s;
+> #并发量限流-单个IP控制
+> limit_conn_zone $binary_remote_addr zone=perip:10m;
+> #并发量限流-整个服务控制
+> limit_conn_zone $server_name zone=perserver:10m;
+> server {
+>     listen       80;
+>     server_name  localhost;
+>     location ~ .*\.(woff|ico|css|js|gif|jpg|jpeg|png)$ {
+>     	root /usr/local/openrestyDir/pages/;
+>     }
+>     location /msitems/ {
+>         #限流配置
+>         #limit_req zone=ipRateLimit burst=5 nodelay;
+>         #并发量限流
+>         limit_conn perip 20;
+>         limit_conn perserver 100;
+>         root /usr/local/openrestyDir/pages/;
+>     }
+> }
+
+
+
+---
+
+Rsync
+
+大文件容易僵尸，在文件完成前，都是以隐藏文件显示
+
+小文件最好是打包成压缩包传输，效率更高
+
+---
+
+多级缓存
+
+全网静态资源分发:
+
+​	静态内容方法到其他的cdn节点上，全网分发，用户访问的时候，解析用户所在地址进行读取缓存。
+
+​	cdn主要是静态内容缓存的分发。
+
+屏蔽大量的无效请求。
+
+Nginx正向反向代理都能够做缓存。可以做内存和磁盘的缓存。
+
+缓存的扩展和迁移。
+
+--静态资源缓存
+
+--浏览器缓存
+
+--CDN缓存
+
+--正向代理缓存
+
+--反向代理缓存
+
+--nginx内存缓存
+
+--外置内存缓存
+
+
+
+---
+
+浏览器强制缓存和协商缓存
+
+304状态码，浏览器自己去找缓存
+
+协商式缓存:etag lastmodified
+
+
+
 
 
 
