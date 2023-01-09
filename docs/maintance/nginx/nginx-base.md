@@ -453,7 +453,94 @@ Nginx正向反向代理都能够做缓存。可以做内存和磁盘的缓存。
 
 
 
+---
+
+https配置:
+
+server {
+        listen 443;
+        server_name apexdata.com.cn; 
+        ssl on;
+
+        if ($host != 'www.apexdata.com.cn'){
+            return 403;
+        }  
+    
+        ssl_session_timeout  15m; 
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_prefer_server_ciphers on;
+    
+        ssl_certificate  /usr/local/nginx/scs1669955270177__.apexdata.com.cn_Nginx/scs1669955270177__.apexdata.com.cn_server.crt;
+        ssl_certificate_key /usr/local/nginx/scs1669955270177__.apexdata.com.cn_Nginx/scs1669955270177__.apexdata.com.cn_server.key;
+        
+        location / {
+            root   html/apexdata.com.cn/html/htdocs;
+            index  index.html index.htm;
+        }
+    }
+
+
+nginx配置https:
+
+>     server {
+>         listen 443 ssl;
+>         server_name apexdata.com.cn; 
+>     
+>         if ($host != 'www.apexdata.com.cn'){
+>             return 403;
+>         }  
+>     
+>       server_name folio.codingce.com.cn;
+>       ssl_session_timeout 5m;
+>       ssl_protocols TLSv1 TLSv1.1 TLSv1.2; 
+>       ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE; 
+>       ssl_prefer_server_ciphers on;
+>     
+>       ssl_certificate  /usr/local/nginx/scs1669955270177__.apexdata.com.cn_Nginx/scs1669955270177__.apexdata.com.cn_server.crt;
+>       ssl_certificate_key /usr/local/nginx/scs1669955270177__.apexdata.com.cn_Nginx/scs1669955270177__.apexdata.com.cn_server.key;
+>         
+>       location / {
+>             root   html/apexdata.com.cn/html/htdocs;
+>             index  index.html index.htm;
+>         }
+>     }
+>
+>
+>     server {
+>         listen       80;
+>         server_name  apexdata.com.cn;     
+>
+>         error_page   500 502 503 504  /50x.html;
+>         location = /50x.html {
+>             root   html;
+>         }
+>             
+>         return 301 https://www.$server_name$request_uri;
+>
+>
+> ​      
+>
+>     }
 
 
 
+---
 
+添加nginx为开机服务(/lib/systemd/system/)
+
+> ```bash
+> [Unit]
+> Description=nginx service
+> After=network.target
+> 
+> [Service]
+> Type=forking
+> ExecStart=/usr/local/nginx/sbin/nginx
+> ExecReload=/usr/local/nginx/sbin/nginx -s reload
+> ExecStop=/usr/local/nginx/sbin/nginx -s stop
+> PrivateTmp=true
+> 
+> [Install]
+> WantedBy=multi-user.target
+> ```
